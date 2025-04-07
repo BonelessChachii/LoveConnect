@@ -12,6 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $age = (int)$_POST['age'];
     $hobbies = htmlspecialchars($_POST['hobbies']);
     $bio = htmlspecialchars($_POST['bio']);
+    $favorite_games = htmlspecialchars($_POST['favorite_games']);
 
     $pic = "";
     if ($_FILES['profile_pic']['name']) {
@@ -24,10 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Update the existing profile instead of inserting a new one
-    $stmt = $conn->prepare("UPDATE profiles SET name = ?, age = ?, hobbies = ?, bio = ?, profile_pic = ? WHERE user_id = ?");
-    $stmt->bind_param("sisssi", $name, $age, $hobbies, $bio, $pic, $_SESSION['user']);
+    $stmt = $conn->prepare("UPDATE profiles SET name = ?, age = ?, hobbies = ?, bio = ?, favorite_games = ?, profile_pic = ? WHERE user_id = ?");
+    $stmt->bind_param("sissssi", $name, $age, $hobbies, $bio, $favorite_games, $pic, $_SESSION['user']);
     $stmt->execute();
-
     header("Location: home.php");
     exit();
 }
@@ -48,6 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="number" name="age" placeholder="Age" required>
             <textarea name="hobbies" placeholder="Your Hobbies" required></textarea>
             <textarea name="bio" placeholder="Describe yourself" required></textarea>
+            <textarea name="favorite_games" placeholder="Your Favorite Games" required></textarea>
             <input type="file" name="profile_pic" accept="image/*" required>
             <button type="submit">Save Profile</button>
         </form>
