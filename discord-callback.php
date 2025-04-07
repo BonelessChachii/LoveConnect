@@ -86,7 +86,7 @@ $stmt->close();
 // Check if the profile info is empty
 if (empty($profile['bio']) || empty($profile['hobbies']) || empty($profile['favorite_games'])) {
     // Redirect to the page where user can update their profile info
-    header("Location: edit_profile.php");
+    header("Location: create_profile.php");
     exit();
 } else {
     // If profile info is already filled out, redirect to home.php

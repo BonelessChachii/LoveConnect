@@ -23,8 +23,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $pic);
     }
 
-    $stmt = $conn->prepare("INSERT INTO profiles (user_id, name, age, hobbies, bio, profile_pic) VALUES (?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("isisss", $_SESSION['user'], $name, $age, $hobbies, $bio, $pic);
+    // Update the existing profile instead of inserting a new one
+    $stmt = $conn->prepare("UPDATE profiles SET name = ?, age = ?, hobbies = ?, bio = ?, profile_pic = ? WHERE user_id = ?");
+    $stmt->bind_param("sisssi", $name, $age, $hobbies, $bio, $pic, $_SESSION['user']);
     $stmt->execute();
 
     header("Location: home.php");
@@ -33,10 +34,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Create Profile - LoveConnect</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
         <h2>Create Your Profile</h2>
@@ -50,4 +53,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </form>
     </div>
 </body>
+
 </html>
