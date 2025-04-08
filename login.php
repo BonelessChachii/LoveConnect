@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <div class="container">
-        <h2>Login</h2>
+        <h2>Login to CO-OP</h2>
         <?php if (isset($_GET['registered']) && $_GET['registered'] == 'success'): ?>
             <p style="color: green;">Registration successful! Please log in.</p>
         <?php endif; ?>
