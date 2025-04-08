@@ -38,14 +38,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Login - LoveConnect</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Minimal styles for the password container */
+        .password-container {
+            position: relative;
+        }
+
+        .password-container input {
+            width: 100%;
+            padding-right: 40px;
+            box-sizing: border-box;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 18px;
+        }
+    </style>
 </head>
+
 <body>
     <div class="container">
         <h2>Login</h2>
-
         <?php if (isset($_GET['registered']) && $_GET['registered'] == 'success'): ?>
             <p style="color: green;">Registration successful! Please log in.</p>
         <?php endif; ?>
@@ -53,16 +75,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <form method="post">
             <input type="email" name="email" placeholder="Email Address" required>
-            <input type="password" name="password" placeholder="Password" required>
+            <div class="password-container">
+                <input type="password" id="password-field" name="password" placeholder="Password" required>
+                <span class="password-toggle" onclick="togglePassword()">👁️</span>
+            </div>
             <button type="submit" class="primary-btn">Login</button>
         </form>
 
         <p>Don’t have an account? <a href="register.php">Register here</a></p>
 
-        <!-- ✅ Styled Discord Login Button -->
         <div class="discord-login">
             <a href="login-discord.php" class="discord-btn">Login with Discord</a>
         </div>
     </div>
+
+    <script>
+        function togglePassword() {
+            var pwd = document.getElementById('password-field');
+            var toggle = document.querySelector('.password-toggle');
+            if (pwd.type === "password") {
+                pwd.type = "text";
+                toggle.textContent = "🔒";
+            } else {
+                pwd.type = "password";
+                toggle.textContent = "👁️";
+            }
+        }
+    </script>
 </body>
+
 </html>
