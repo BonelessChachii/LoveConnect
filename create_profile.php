@@ -7,6 +7,14 @@ if (!isset($_SESSION['user'])) {
     exit();
 }
 
+// Check if a profile for the current user already exists
+$stmt = $conn->prepare("SELECT id FROM profiles WHERE user_id = ?");
+$stmt->bind_param("i", $_SESSION['user']);
+$stmt->execute();
+$result = $stmt->get_result();
+$profile_exists = ($result->num_rows > 0);
+$stmt->close();
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = htmlspecialchars($_POST['name']);
     $age = (int)$_POST['age'];
@@ -24,14 +32,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $pic);
     }
 
-    // Update the existing profile instead of inserting a new one
-    $stmt = $conn->prepare("UPDATE profiles SET name = ?, age = ?, hobbies = ?, bio = ?, favorite_games = ?, profile_pic = ? WHERE user_id = ?");
-    $stmt->bind_param("sissssi", $name, $age, $hobbies, $bio, $favorite_games, $pic, $_SESSION['user']);
+    if ($profile_exists) {
+        // Update existing profile
+        $stmt = $conn->prepare("UPDATE profiles SET name = ?, age = ?, hobbies = ?, bio = ?, favorite_games = ?, profile_pic = ? WHERE user_id = ?");
+        $stmt->bind_param("sissssi", $name, $age, $hobbies, $bio, $favorite_games, $pic, $_SESSION['user']);
+    } else {
+        // Insert new profile record
+        $stmt = $conn->prepare("INSERT INTO profiles (user_id, name, age, hobbies, bio, favorite_games, profile_pic) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("isissss", $_SESSION['user'], $name, $age, $hobbies, $bio, $favorite_games, $pic);
+    }
     $stmt->execute();
+    $stmt->close();
+
     header("Location: home.php");
     exit();
-}
-?>
+} ?>
 <!DOCTYPE html>
 <html>
 
