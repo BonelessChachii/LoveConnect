@@ -2,6 +2,10 @@
 session_start();
 require 'db.php';
 
+//for debugging
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 if (!isset($_SESSION['user'])) {
     header("Location: login.php");
     exit();
