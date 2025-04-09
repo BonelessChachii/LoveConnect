@@ -78,7 +78,7 @@ $result = $stmt->get_result();
         <?php else: ?>
             <p>No new messages 📭</p>
         <?php endif; ?>
-        <p style="text-align: center; margin-top: 20px;"><a href="home.php">Back to Home</a></p>
+        <p style="text-align: center; margin-top: 20px;"><a href="home.php">← Back to Home</a></p>
     </div>
 
 </body>
