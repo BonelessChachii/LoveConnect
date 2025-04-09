@@ -161,7 +161,7 @@ a:hover {
 /* Top-right profile button */
 .profile-btn {
     position: absolute;
-    top: 20px;
+    top: 30px;
     right: 20px;
     z-index: 1000;
 }
@@ -170,7 +170,7 @@ a:hover {
     padding: 10px 20px;
     background-color: #007bff;
     color: white;
-    border-radius: 6px;
+    border-radius: 5px;
     text-decoration: none;
     font-weight: bold;
 }
