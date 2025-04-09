@@ -132,14 +132,14 @@ $notif_check->close();
                 </form>
             </div>
         <?php else: ?>
-            <h3>Sorry, we were not able to match you</h3>
+            <h3>Sorry, there's no more gamers left</h3>
             <a href="logout.php"> logout😢</a>
         <?php endif; ?>
 
     </div>
 
     <!-- 🔊 Notification sound & toast -->
-    <audio id="notif-sound" src="notification.mp3" preload="auto"></audio>
+    <audio id="notif-sound" src="Metal Gear Alert Sound Effect.mp3" preload="auto"></audio>
     <div class="toast" id="toast">📬 New message received!</div>
 
     <script>

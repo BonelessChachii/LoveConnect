@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 
 <head>
-    <title>Create Profile - LoveConnect</title>
+    <title>Create Profile - CO-OP</title>
     <link rel="stylesheet" href="style.css">
 </head>
 

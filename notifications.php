@@ -23,6 +23,7 @@ $result = $stmt->get_result();
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Notifications</title>
     <link rel="stylesheet" href="style.css">
@@ -33,7 +34,7 @@ $result = $stmt->get_result();
             border-radius: 10px;
             max-width: 500px;
             margin: 40px auto;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .notif-item {
@@ -62,22 +63,24 @@ $result = $stmt->get_result();
         }
     </style>
 </head>
+
 <body>
 
-<div class="notif-box">
-    <h2>New Messages</h2>
-    <?php if ($result->num_rows > 0): ?>
-        <?php while ($row = $result->fetch_assoc()): ?>
-            <div class="notif-item">
-                <span><?php echo htmlspecialchars($row['name']); ?> (<?php echo $row['message_count']; ?>)</span>
-                <a class="chat-button" href="message.php?user=<?php echo $row['id']; ?>">Chat 💬</a>
-            </div>
-        <?php endwhile; ?>
-    <?php else: ?>
-        <p>No new messages 📭</p>
-    <?php endif; ?>
-    <p style="text-align: center; margin-top: 20px;"><a href="home.php">Back to Home</a></p>
-</div>
+    <div class="notif-box">
+        <h2>New Messages</h2>
+        <?php if ($result->num_rows > 0): ?>
+            <?php while ($row = $result->fetch_assoc()): ?>
+                <div class="notif-item">
+                    <span><?php echo htmlspecialchars($row['name']); ?> (<?php echo $row['message_count']; ?>)</span>
+                    <a class="chat-button" href="message.php?user=<?php echo $row['id']; ?>">Chat 💬</a>
+                </div>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <p>No new messages 📭</p>
+        <?php endif; ?>
+        <p style="text-align: center; margin-top: 20px;"><a href="home.php">Back to Home</a></p>
+    </div>
 
 </body>
+
 </html>

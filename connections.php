@@ -31,8 +31,9 @@ $result = $stmt->get_result();
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Your Connections - LoveConnect</title>
+    <title>Your Connections - CO-OP</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .container {
@@ -41,7 +42,7 @@ $result = $stmt->get_result();
             background: #fff;
             padding: 30px;
             border-radius: 12px;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
         }
 
         .connection {
@@ -86,27 +87,29 @@ $result = $stmt->get_result();
         }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <h2>Your Connections</h2>
+    <div class="container">
+        <h2>Your Connections</h2>
 
-    <?php if ($result->num_rows > 0): ?>
-        <?php while ($row = $result->fetch_assoc()): ?>
-            <div class="connection">
-                <div class="connection-info">
-                    <img src="<?php echo $row['profile_pic']; ?>" alt="Profile Pic">
-                    <span class="connection-name"><?php echo htmlspecialchars($row['name']); ?></span>
+        <?php if ($result->num_rows > 0): ?>
+            <?php while ($row = $result->fetch_assoc()): ?>
+                <div class="connection">
+                    <div class="connection-info">
+                        <img src="<?php echo $row['profile_pic']; ?>" alt="Profile Pic">
+                        <span class="connection-name"><?php echo htmlspecialchars($row['name']); ?></span>
+                    </div>
+                    <a href="message.php?user=<?php echo $row['id']; ?>" class="chat-btn">Chat 💬</a>
                 </div>
-                <a href="message.php?user=<?php echo $row['id']; ?>" class="chat-btn">Chat 💬</a>
-            </div>
-        <?php endwhile; ?>
-    <?php else: ?>
-        <p>You have no connections yet.</p>
-    <?php endif; ?>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <p>You have no connections yet.</p>
+        <?php endif; ?>
 
-    <p style="margin-top: 20px;"><a href="home.php">← Back to Home</a></p>
-</div>
+        <p style="margin-top: 20px;"><a href="home.php">← Back to Home</a></p>
+    </div>
 
 </body>
+
 </html>
