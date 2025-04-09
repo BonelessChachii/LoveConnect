@@ -96,7 +96,7 @@ $notif_check->close();
 <html>
 
 <head>
-    <title>Home - LoveConnect</title>
+    <title>Home - CO-OP</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -118,7 +118,7 @@ $notif_check->close();
 
     <!-- 🔥 Main Content -->
     <div class="container">
-        <h2>Welcome to LoveConnect</h2>
+        <h2>Welcome to CO-OP</h2>
 
         <?php if ($current_match): ?>
             <div class="match-card">
@@ -132,7 +132,8 @@ $notif_check->close();
                 </form>
             </div>
         <?php else: ?>
-            <h3>Sorry, we were not able to match you 😢</h3>
+            <h3>Sorry, we were not able to match you</h3>
+            <a href="logout.php"> logout😢</a>
         <?php endif; ?>
 
     </div>
