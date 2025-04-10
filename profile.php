@@ -16,9 +16,11 @@ $stmt->fetch();
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Your Profile - LoveConnect</title>
+    <title>Your Profile - CO-OP</title>
 </head>
+
 <body>
     <h2>Welcome, <?php echo htmlspecialchars($name); ?>!</h2>
     <p><strong>Age:</strong> <?php echo $age; ?></p>
@@ -26,4 +28,5 @@ $stmt->fetch();
     <p><strong>Interests:</strong> <?php echo htmlspecialchars($interests); ?></p>
     <a href="logout.php">Logout</a>
 </body>
+
 </html>

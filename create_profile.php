@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt = $conn->prepare("UPDATE profiles SET name = ?, age = ?, hobbies = ?, bio = ?, favorite_games = ?, profile_pic = ? WHERE user_id = ?");
         $stmt->bind_param("sissssi", $name, $age, $hobbies, $bio, $favorite_games, $pic, $_SESSION['user']);
     } else {
-        // Insert new profile record
+        // Insert new profile record (should fix bug)
         $stmt = $conn->prepare("INSERT INTO profiles (user_id, name, age, hobbies, bio, favorite_games, profile_pic) VALUES (?, ?, ?, ?, ?, ?, ?)");
         $stmt->bind_param("isissss", $_SESSION['user'], $name, $age, $hobbies, $bio, $favorite_games, $pic);
     }

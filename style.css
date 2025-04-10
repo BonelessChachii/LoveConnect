@@ -5,7 +5,7 @@ body {
     padding: 0;
     font-family: 'Poppins', sans-serif;
     height: 100vh;
-    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab); /*cool gradient background */
     background-size: 400% 400%;
     animation: gradientBG 15s ease infinite;
     display: flex;
@@ -218,7 +218,7 @@ a:hover {
     100% { opacity: 0; transform: translateY(20px); }
 }
 
-/* ✅ Discord Login Button */
+/* Discord Login Button */
 .discord-login {
     text-align: center;
     margin-top: 20px;

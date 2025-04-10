@@ -34,8 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Chat - LoveConnect</title>
+    <title>Chat - CO-OP</title>
     <link rel="stylesheet" href="style.css">
     <style>
         #chat-box {
@@ -92,6 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         });
     </script>
 </head>
+
 <body>
     <div class="container">
         <h2>Chat</h2>
@@ -106,4 +108,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p style="margin-top: 15px;"><a href="home.php">Back to Home</a></p>
     </div>
 </body>
+
 </html>

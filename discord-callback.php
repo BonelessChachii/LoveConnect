@@ -62,7 +62,7 @@ if ($stmt->num_rows > 0) {
 $stmt->close();
 
 $_SESSION['user'] = $user_id;
-// ✅ Step: Auto-create profile for Discord users if missing
+// Auto-create profile for Discord users if missing
 $check_profile = $conn->prepare("SELECT id FROM profiles WHERE user_id = ?");
 $check_profile->bind_param("i", $user_id);
 $check_profile->execute();
@@ -89,7 +89,6 @@ if (empty($profile['bio']) || empty($profile['hobbies']) || empty($profile['favo
     header("Location: create_profile.php");
     exit();
 } else {
-    // If profile info is already filled out, redirect to home.php
     header("Location: home.php");
     exit();
 }

@@ -2,7 +2,7 @@
 session_start();
 require 'db.php';
 
-//for debugging
+//for debugging like issue
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
