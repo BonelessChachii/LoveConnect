@@ -19,7 +19,7 @@ if (!isset($_SESSION['match_index'])) {
 }
 
 // Handle Like/Pass
-// In home.php, replace the existing like handling code inside the POST request block:
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['like']) || isset($_POST['pass'])) {
         $match_index = $_SESSION['match_index'];

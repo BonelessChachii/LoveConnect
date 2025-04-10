@@ -18,9 +18,9 @@ $query = "
         SELECT l1.receiver
         FROM likes l1
         INNER JOIN likes l2 ON l1.receiver = l2.sender
-WHERE l1.sender = ? AND l2.receiver = ?
-)
-GROUP BY u.id
+        WHERE l1.sender = ? AND l2.receiver = ?
+        )
+    GROUP BY u.id
 ";
 
 $stmt = $conn->prepare($query);
