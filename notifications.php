@@ -67,7 +67,7 @@ $result = $stmt->get_result();
 <body>
 
     <div class="notif-box">
-        <h2>New Messages</h2>
+        <h2>New Notifications</h2>
         <?php if ($result->num_rows > 0): ?>
             <?php while ($row = $result->fetch_assoc()): ?>
                 <div class="notif-item">
@@ -76,7 +76,7 @@ $result = $stmt->get_result();
                 </div>
             <?php endwhile; ?>
         <?php else: ?>
-            <p>No new messages 📭</p>
+            <p>No new notifications 📭</p>
         <?php endif; ?>
         <p style="text-align: center; margin-top: 20px;"><a href="home.php">← Back to Home</a></p>
     </div>
