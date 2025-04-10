@@ -19,6 +19,7 @@ if (!isset($_SESSION['match_index'])) {
 }
 
 // Handle Like/Pass
+// In home.php, replace the existing like handling code inside the POST request block:
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['like']) || isset($_POST['pass'])) {
         $match_index = $_SESSION['match_index'];
@@ -29,19 +30,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $receiver_id = $matched_user['user_id'];
 
             if (isset($_POST['like'])) {
-                $getName = $conn->prepare("SELECT name FROM users WHERE id = ?");
-                $getName->bind_param("i", $user_id);
-                $getName->execute();
-                $getName->bind_result($sender_name);
-                $getName->fetch();
-                $getName->close();
-
-                $msg = "$sender_name liked your profile!";
-                $stmt = $conn->prepare("INSERT INTO messages (sender_id, receiver_id, message) VALUES (?, ?, ?)");
-                $stmt->bind_param("iis", $user_id, $receiver_id, $msg);
+                // Check if the like already exists to prevent duplicates
+                $stmt = $conn->prepare("SELECT id FROM likes WHERE sender = ? AND receiver = ?");
+                $stmt->bind_param("ii", $user_id, $receiver_id);
                 $stmt->execute();
+                $stmt->store_result();
+
+                if ($stmt->num_rows == 0) {
+                    $stmt->close();
+                    // Insert the like into the likes table
+                    $stmt = $conn->prepare("INSERT INTO likes (sender, receiver) VALUES (?, ?)");
+                    $stmt->bind_param("ii", $user_id, $receiver_id);
+                    $stmt->execute();
+                }
+                $stmt->close();
             }
 
+            // Increment the match index in either case (like or pass)
             $_SESSION['match_index']++;
         }
 

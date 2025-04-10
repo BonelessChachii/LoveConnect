@@ -9,26 +9,24 @@ if (!isset($_SESSION['user'])) {
 
 $user_id = $_SESSION['user'];
 
-// Fetch distinct users the current user has chatted with (sent or received)
+// Updated query to return only mutual likes
 $query = "
     SELECT DISTINCT u.id, p.name, p.profile_pic
     FROM users u
     INNER JOIN profiles p ON u.id = p.user_id
     WHERE u.id IN (
-        SELECT DISTINCT CASE
-            WHEN sender_id = ? THEN receiver_id
-            WHEN receiver_id = ? THEN sender_id
-        END
-        FROM messages
-        WHERE sender_id = ? OR receiver_id = ?
-    ) AND u.id != ?
+        SELECT l1.receiver
+        FROM likes l1
+        INNER JOIN likes l2 ON l1.receiver = l2.sender
+WHERE l1.sender = ? AND l2.receiver = ?
+)
+GROUP BY u.id
 ";
 
 $stmt = $conn->prepare($query);
-$stmt->bind_param("iiiii", $user_id, $user_id, $user_id, $user_id, $user_id);
+$stmt->bind_param("ii", $user_id, $user_id);
 $stmt->execute();
-$result = $stmt->get_result();
-?>
+$result = $stmt->get_result(); ?>
 <!DOCTYPE html>
 <html>
 
@@ -92,7 +90,6 @@ $result = $stmt->get_result();
 
     <div class="container">
         <h2>Your Connections</h2>
-
         <?php if ($result->num_rows > 0): ?>
             <?php while ($row = $result->fetch_assoc()): ?>
                 <div class="connection">
@@ -106,10 +103,8 @@ $result = $stmt->get_result();
         <?php else: ?>
             <p>You have no connections yet.</p>
         <?php endif; ?>
-
         <p style="margin-top: 20px;"><a href="home.php">← Back to Home</a></p>
     </div>
-
 </body>
 
 </html>
