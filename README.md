@@ -88,5 +88,7 @@ Port & Config Notes
 
 11. Notes
 - Ensure uploads folder exists and has write permissions.
+  - To give permissions, go to the directory in the terminal cd ..../XAMPP/htdocs/CO-OP
+  - Once inside the directory, type the command "chmod 777 uploads" into the terminal.
 - Works on both Windows and macOS with XAMPP.
   
