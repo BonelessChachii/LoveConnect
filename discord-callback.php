@@ -4,7 +4,7 @@ require 'db.php';
 
 $client_id = '1357254475080794184';
 $client_secret = 'UAg9FmWqVlpp020z7eAhgsZByurhOG3w';
-$redirect_uri = 'http://localhost/LoveConnect/discord-callback.php';
+$redirect_uri = 'http://localhost/CO-OP/discord-callback.php';
 
 if (!isset($_GET['code'])) {
     die("No code from Discord.");
