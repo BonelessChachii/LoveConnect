@@ -1,4 +1,4 @@
-CO-OP - Gamer Dating Web Application
+CO-OP - Gamer Dating Web Application (Group 7)
 
 Overview
 CO-OP is a swipe-based dating platform specifically built for gamers. It allows users to create a profile, find matches based on game interests, like/pass users, and chat in real time.
@@ -90,4 +90,3 @@ Port & Config Notes
 - Ensure uploads folder exists and has write permissions.
 - Works on both Windows and macOS with XAMPP.
   
-Group 7 
