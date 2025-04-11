@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 
 <head>
-    <title>Login - LoveConnect</title>
+    <title>Login - CO-OP</title>
     <link rel="stylesheet" href="style.css">
     <style>
         /* Minimal styles for the password container */

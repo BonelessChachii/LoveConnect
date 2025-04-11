@@ -24,7 +24,7 @@ while ($row = $result->fetch_assoc()) {
     $align = $row['sender_id'] == $user_id ? 'right' : 'left';
     $bgColor = $row['sender_id'] == $user_id ? '#d1f7c4' : '#ffffff';
     $time = date("h:i A", strtotime($row['created_at']));
-    
+
     echo "
     <div style='text-align: {$align}; margin: 8px 0;'>
         <div style='
