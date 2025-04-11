@@ -45,7 +45,7 @@ How to Deploy This Project
 6. Import SQL Tables
 - Inside phpMyAdmin
 - Click on Import
-- Choose File coop_db.sql
+- Import the file coop_db.sql from the CO-OP folder
 - Import
 
 
